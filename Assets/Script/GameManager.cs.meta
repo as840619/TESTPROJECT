@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b9a8fcbce20e49a489c77bcf49eae35a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - EnergyBar: {fileID: 6555072531174847434, guid: af5724a2fdc01c94daf4b3bf59a81160, type: 3}
+  - Cell1: {fileID: 3009115137446905546, guid: baec042054ee36d4a840e71a7ee4c21b, type: 3}
+  - Cell2: {fileID: 1106939872577281496, guid: b830b48788c8f124e9a12e942d896f43, type: 3}
+  - Cell3: {fileID: 7305978938159602102, guid: 2e9e90b233bb8e94f9e2764fd8c837ac, type: 3}
+  - Cell6: {fileID: 6857323987259863426, guid: ed2d6c3a00d05af46aa0ce5feff0673f, type: 3}
+  - Plane: {fileID: 3803326341784171872, guid: db7ecab0c823c0743a981d2754057992, type: 3}
+  - Enemy: {fileID: 8201109377933214686, guid: 024574526acac2b4aae85a035f926f83, type: 3}
+  - RedFlower: {fileID: 5047439328247475400, guid: 69826a9b66e5f0049ba12288385b2ebc, type: 3}
+  - Iron: {fileID: 8307322894754887973, guid: 53168ceb81c92934d9d8edab7fef6d9e, type: 3}
+  - Rock: {fileID: 100000, guid: 19497d68b37d2594fb3e269601d333be, type: 3}
+  - Portal: {fileID: 2831978730654361082, guid: 8a9265abcb51cb34cbf8d59e3b3c2bc0, type: 3}
+  - EndObject: {fileID: 7421938932336848835, guid: 66c2e39502a35584cb03b7544e8863a4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
