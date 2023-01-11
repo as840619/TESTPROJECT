@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6089284064710107570}
   - component: {fileID: 5100238207022388663}
   - component: {fileID: -368016401669026471}
+  - component: {fileID: -6237330080720036377}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Enemy
@@ -119,3 +120,17 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6237330080720036377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201109377933214686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7c0062c94654a418ea3c696eccfbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: -368016401669026471}
+  _idle: {fileID: 2243722010398846202, guid: 974bd96a4eff70a4c8cd351102cb6fbd, type: 3}
