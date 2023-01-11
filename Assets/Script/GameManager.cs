@@ -2,174 +2,149 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    private void Start()
+    void Start()
     {
-        createplane();
-        createenemy();
-        createredflower();
-        createiron();
-        createrock();
-        switchtag();
-        endtag();
-    }
-    private void Update()
-    {
-        updateUI();
+        CreateEnemy();
+        CreateRedFlower();
+        CreateIron();
+        CreateRock();
+        SwitchTag();
+        EndTag();
     }
 
-    [HeaderAttribute("玩家介面")]
-    public Text EnergyBar;
-    public Text Cell1;
-    public Text Cell2;
-    public Text Cell3;
-    public Text Cell6;
-    private static int Energy = 0;
-    private static int cell1 = 0;
-    private static int cell2 = 0;
-    private static int cell3 = 0;
-    private static int cell6 = 0;
-
-    public static void addenergy(int n)
+    void Update()
     {
-        Energy += n;
+        UpdateUI();
     }
-    public static void addcell1(int n)
+
+    [Header("玩家介面")]
+    public Text _cell1Bar;
+    public Text _cell2Bar;
+    public Text _cell3Bar;
+    public Text _cell4Bar;
+    public Text _cell5Bar;
+    public Text _cell6Bar;
+    private static int cell1 = 11;
+    private static int cell2 = 22;
+    private static int cell3 = 22;
+    private static int cell4 = 33;
+    private static int cell5 = 44;
+    private static int cell6 = 55;
+
+    public static void AddCell1(int n)
     {
         cell1 += n;
+        if(cell1 <= 0)
+        {
+            EditorApplication.isPlaying = false; 
+        }
     }
-    public static void addcell2(int n)
+    public static void AddCell2(int n)
     {
         cell2 += n;
     }
-    public static void addcell3(int n)
+    public static void AddCell3(int n)
     {
         cell3 += n;
     }
-    public static void addcell6(int n)
+    public static void AddCell6(int n)
     {
         cell6 += n;
     }
-    private void updateUI()
+    public void UpdateUI()
     {
-        EnergyBar.text = "Energy:" + Energy.ToString();
-        Cell1.text = "Energy:" + cell1.ToString();
-        Cell2.text = "Energy:" + cell2.ToString();
-        Cell3.text = "Energy:" + cell3.ToString();
-        Cell6.text = "Energy:" + cell6.ToString();
+        _cell1Bar.text = cell1.ToString();
+        _cell2Bar.text = cell2.ToString();
+        _cell3Bar.text = cell3.ToString();
+        _cell4Bar.text = cell4.ToString();
+        _cell5Bar.text = cell5.ToString();
+        _cell6Bar.text = cell6.ToString();
     }
 
-    [HeaderAttribute("實例地面")]
-    public int width = 10;
-    public int height = 1;
-    public int length = 10;
-    public GameObject Plane;
+    [Header("實例敵人")]
+    [SerializeField] int _maxEnemyAmount = 250;
+    [SerializeField] GameObject _enemy;
 
-    public void createplane()
+    public void CreateEnemy()
     {
-        for (int x = 0; x < width + 1; x++)
+        for (int n = 0; n < _maxEnemyAmount; n++)
         {
-            for (int z = 0; z < length + 1; z++)
-            {
-                GameObject floor = Instantiate(Plane, new Vector3((-(width / 2) + x) * 10, height, (-(length / 2) + z) * 10), transform.rotation);
-            }
+            Instantiate(_enemy, new Vector3(Random.Range(-50f, 50f), 3, Random.Range(-50f, 50f)), transform.rotation);
+        }
+        for (int n = 0; n < _maxEnemyAmount; n++)
+        {
+            Instantiate(_enemy, new Vector3(Random.Range(-125f, 125f), 3, Random.Range(375f, 625f)), transform.rotation);
         }
     }
 
-    [HeaderAttribute("實例敵人")]
-    public int MaxEnemyAmount = 200;
-    public GameObject Enemy;
-
-    public void createenemy()
-    {
-        for (int n = 0; n < MaxEnemyAmount; n++)
-        {
-            GameObject enemy1 = Instantiate(Enemy, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
-        }
-    }
-
-    [HeaderAttribute("實例紅花")]
-    public int MaxRedflowerAmount = 50;
-    public GameObject RedFlower;
-    public void createredflower()
+    [Header("實例紅花")]
+    [SerializeField] int _maxRedFlowerAmount = 50;
+    [SerializeField] GameObject _redFlower;
+    void CreateRedFlower()
     {
         int number = SceneManager.GetActiveScene().buildIndex;
         string name = SceneManager.GetActiveScene().name;
         if (name == "FirstScene" || number == 0)
         {
-            for (int i = 0; i < Random.Range(0, 20); i++)
+            for (int i = 0; i < Random.Range(0, _maxRedFlowerAmount); i++)
             {
-                GameObject redflower = Instantiate(RedFlower, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
+                Instantiate(_redFlower, new Vector3(Random.Range(-50f, 50f), 0, Random.Range(-50f, 50f)), transform.rotation);
             }
         }
     }
 
-    [HeaderAttribute("實例鐵塊")]
-    public int MaxIronAmount = 50;
-    public GameObject Iron;
-    public void createiron()
+    [Header("實例鐵塊")]
+    [SerializeField] int _maxIronAmount = 50;
+    [SerializeField] GameObject _iron;
+    public void CreateIron()
     {
         int number = SceneManager.GetActiveScene().buildIndex;
         string name = SceneManager.GetActiveScene().name;
         if (name == "FirstScene" || number == 0)
         {
-            for (int i = 0; i < Random.Range(0, 20); i++)
+            for (int i = 0; i < Random.Range(0, _maxIronAmount); i++)
             {
-                GameObject iron = Instantiate(Iron, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
+                Instantiate(_iron, new Vector3(Random.Range(-50f, 50f), 0, Random.Range(-50f, 50f)), transform.rotation);
             }
         }
     }
 
 
-    [HeaderAttribute("實例石頭")]
-    public int MaxRockAmount = 50;
-    public GameObject Rock;
-    public void createrock()
+    [Header("實例石頭")]
+    [SerializeField] int _maxRockAmount = 50;
+    [SerializeField] GameObject _rock;
+    public void CreateRock()
     {
         int number = SceneManager.GetActiveScene().buildIndex;
         string name = SceneManager.GetActiveScene().name;
         if (name == "MainScene" || number == 1)
         {
-            for (int i = 0; i< Random.Range(0, 20);i++)
+            for (int i = 0; i < Random.Range(0, _maxRockAmount); i++)
             {
-                GameObject rock = Instantiate(Rock, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
+                Instantiate(_rock, new Vector3(Random.Range(-125f, 125f), 0, Random.Range(375f, 625f)), transform.rotation);
             }
         }
     }
 
-    [HeaderAttribute("傳送門")]
-    public GameObject Portal;
+    [Header("傳送門")]
+    [SerializeField] GameObject _portal;
 
-    public void switchtag()
+    public void SwitchTag()
     {
-        int number = SceneManager.GetActiveScene().buildIndex;
-        string name = SceneManager.GetActiveScene().name;
-        if (name == "FirstScene" || number == 0)
-        {
-            GameObject switch1 = Instantiate(Portal, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
-        }
+        Instantiate(_portal, new Vector3(Random.Range(-50f, 50f), 0, Random.Range(-50f, 50f)), transform.rotation);
     }
 
-    [HeaderAttribute("離開程式")]
-    public GameObject EndObject;
+    [Header("離開程式")]
+    [SerializeField] GameObject _endObject;
 
-    public void endtag()
+    public void EndTag()
     {
-        int number = SceneManager.GetActiveScene().buildIndex;
-        string name = SceneManager.GetActiveScene().name;
-        if (name == "MainScene" || number == 1)
-        {
-            GameObject end1 = Instantiate(EndObject, new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50)), transform.rotation);
-        }
-    }
-
-    public void sceneswitch()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Instantiate(_endObject, new Vector3(Random.Range(-125f, 125f), 1, Random.Range(375f, 625f)), transform.rotation);
     }
 
 }
